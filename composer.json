@@ -1,0 +1,35 @@
+{
+  "name": "bitpatroon/support_functions",
+  "type": "typo3-cms-extension",
+  "description": "Bitpatroon Support Functions",
+  "keywords": [
+    "typo3",
+    "support",
+    "code"
+  ],
+  "license": "GPL-2.0-or-later",
+  "authors": [
+    {
+      "name": "Sjoerd Zonneveld",
+      "homepage": "https://www.bitpatroon.nl",
+      "role": "Developer"
+    }
+  ],
+  "minimum-stability": "stable",
+  "require": {
+    "php": "^7.2"
+  },
+  "config": {
+    "optimize-autoloader": true
+  },
+  "autoload": {
+    "psr-4": {
+      "BPN\\SupportFunctions\\": "Classes"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "BPN\\SupportFunctions\\": "Tests"
+    }
+  }
+}
