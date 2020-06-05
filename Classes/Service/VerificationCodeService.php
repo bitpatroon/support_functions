@@ -1,4 +1,5 @@
 <?php
+
 /***************************************************************
  *  Copyright notice
  *
@@ -42,9 +43,9 @@ class VerificationCodeService
 
     /**
      * Creates verification code with the given input
-     * @param string $input the string to encode
-     * @param int $numberOfSecondsBeforeExpiration the number of seconds before the hash becomes invalid
-     * @param string $secureKey key with which the salt will be generated
+     * @param string $input                           the string to encode
+     * @param int    $numberOfSecondsBeforeExpiration the number of seconds before the hash becomes invalid
+     * @param string $secureKey                       key with which the salt will be generated
      * @return string
      */
     public function createVerificationCode($input, $numberOfSecondsBeforeExpiration, $secureKey): string
@@ -84,10 +85,10 @@ class VerificationCodeService
 
     /**
      * Checks if the hash is valid
-     * @param string $hash the hash supplied
-     * @param string $input data to use to create hash
-     * @param int $numberOfSecondsBeforeExpiration the number of seconds before the hash becomes invalid
-     * @param string $secureKey secure key that only we know
+     * @param string $hash                            the hash supplied
+     * @param string $input                           data to use to create hash
+     * @param int    $numberOfSecondsBeforeExpiration the number of seconds before the hash becomes invalid
+     * @param string $secureKey                       secure key that only we know
      * @return bool
      */
     public function isValid($hash, $input, $numberOfSecondsBeforeExpiration, $secureKey): bool

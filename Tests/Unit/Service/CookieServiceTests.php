@@ -1,4 +1,5 @@
 <?php
+
 /***************************************************************
  *  Copyright notice
  *
@@ -33,19 +34,19 @@ use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
 class CookieServiceTests extends UnitTestCase
 {
 
-    private const SecureCookieName = 'SettingX';
-    private const SecureCookieValue = 'ByAX0QvIvzXS8RZi1DKG';
+    private const SECURECOOKIENAME = 'SettingX';
+    private const SECURECOOKIEVALUE = 'ByAX0QvIvzXS8RZi1DKG';
 
     /**
      * @test
-     * @dataProvider dataProvider_SettingSecureCookieWorksAsExpected
+     * @dataProvider dataProviderSettingSecureCookieWorksAsExpected
      */
-    Public function SettingSecureCookieWorksAsExpected($cookieValue, $expected, $usage)
+    public function settingSecureCookieWorksAsExpected($cookieValue, $expected, $usage)
     {
         $hash = $this->getHash($cookieValue);
 
         CookieService::setSecureCookie(
-            self::SecureCookieName,
+            self::SECURECOOKIENAME,
             $hash,
             $cookieValue,
             -1,
@@ -53,7 +54,7 @@ class CookieServiceTests extends UnitTestCase
             $usage
         );
 
-        $actual = CookieService::getSecureCookieData(self::SecureCookieName, true, false);
+        $actual = CookieService::getSecureCookieData(self::SECURECOOKIENAME, true, false);
 
         Assert::assertEquals($expected, $actual);
 
@@ -61,17 +62,16 @@ class CookieServiceTests extends UnitTestCase
         if ($usage == CookieService::USAGE_SINGLE) {
             $newExpected = null;
         }
-        $actual = CookieService::getSecureCookieData(self::SecureCookieName);
+        $actual = CookieService::getSecureCookieData(self::SECURECOOKIENAME);
         Assert::assertEquals($newExpected, $actual);
     }
 
-    public function dataProvider_SettingSecureCookieWorksAsExpected()
+    public function dataProviderSettingSecureCookieWorksAsExpected()
     {
         return [
-            [self::SecureCookieValue, self::SecureCookieValue, CookieService::USAGE_SINGLE],
-            [self::SecureCookieValue, self::SecureCookieValue, CookieService::USAGE_MULTIPLE]
+            [self::SECURECOOKIEVALUE, self::SECURECOOKIEVALUE, CookieService::USAGE_SINGLE],
+            [self::SECURECOOKIEVALUE, self::SECURECOOKIEVALUE, CookieService::USAGE_MULTIPLE]
         ];
-
     }
 
     private function getHash($value)

@@ -1,4 +1,5 @@
 <?php
+
 /***************************************************************
  *  Copyright notice
  *
@@ -26,6 +27,7 @@
 
 namespace BPN\SupportFunctions\Service;
 
+use InvalidArgumentException;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 class CookieService
@@ -63,7 +65,7 @@ class CookieService
         $numberOfSecondsBeforeExpiration = 3600
     ) {
         if (empty($cookieName)) {
-            throw new \InvalidArgumentException('Invalid value for $cookieName', 1472218963);
+            throw new InvalidArgumentException('Invalid value for $cookieName', 1472218963);
         }
         if (empty($numberOfSecondsBeforeExpiration) || $numberOfSecondsBeforeExpiration < 0) {
             $numberOfSecondsBeforeExpiration = 3600;
@@ -148,7 +150,8 @@ class CookieService
      * @param string $cookieName                          the name of the cookie
      * @param string $hashKey                             the key to determine the hash
      * @param mixed  $data                                the data to store
-     * @param int    $cookieExpirationSeconds             the amount of seconds before the cookie expires. Make 0 to make (browser)session.
+     * @param int    $cookieExpirationSeconds             the amount of seconds before the cookie expires.
+     *                                                    Make 0 to make (browser)session.
      * @param int    $numberOfSecondsBeforeHashExpiration the amount of seconds until the hash expires
      * @param bool   $expire                              true to remove the cookie
      * @param        $usage
@@ -163,10 +166,16 @@ class CookieService
         $usage = self::USAGE_DONTCARE
     ) {
         if (empty($cookieName)) {
-            throw new \InvalidArgumentException('Invalid value for $cookieName. Cannot be empty', 1472218980);
+            throw new InvalidArgumentException(
+                'Invalid value for $cookieName. Cannot be empty',
+                1472218980
+            );
         }
         if (empty($hashKey)) {
-            throw new \InvalidArgumentException('Invalid value for $key. Cannot be empty', 1472218996);
+            throw new InvalidArgumentException(
+                'Invalid value for $key. Cannot be empty',
+                1472218996
+            );
         }
 
         if ($expire) {
@@ -183,8 +192,11 @@ class CookieService
         $attributes[self::FIELD_KEY] = $hashKey;
         /** @var VerificationCodeService $verificationCodeService */
         $verificationCodeService = GeneralUtility::makeInstance(VerificationCodeService::class);
-        $attributes[self::FIELD_HASH] = $verificationCodeService->createVerificationCode($hashKey,
-            $numberOfSecondsBeforeHashExpiration, self::SECRET);
+        $attributes[self::FIELD_HASH] = $verificationCodeService->createVerificationCode(
+            $hashKey,
+            $numberOfSecondsBeforeHashExpiration,
+            self::SECRET
+        );
         $attributes[self::FIELD_CONTENT] = serialize($data);
         if (!empty($usage)) {
             $attributes[self::FIELD_USAGE] = (int)$usage;
@@ -214,11 +226,10 @@ class CookieService
     public static function deleteCookie($id)
     {
         if (empty($id)) {
-            throw new \InvalidArgumentException('Invalid value for $id', 1586637692);
+            throw new InvalidArgumentException('Invalid value for $id', 1586637692);
         }
         unset($_COOKIE[$id]);
 
         setcookie($id, null, time() - 3600, '/', null);
     }
-
 }
