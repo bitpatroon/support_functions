@@ -32,5 +32,10 @@
     "psr-4": {
       "BPN\\SupportFunctions\\": "Tests"
     }
+  },
+  "extra": {
+    "typo3/cms": {
+      "extension-key": "support_functions"
+    }
   }
 }
