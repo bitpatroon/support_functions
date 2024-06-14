@@ -27,13 +27,12 @@
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
 
-namespace SPL\SplLibrary\Middleware;
+namespace BPN\SupportFunctions\Middleware;
 
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface;
-use SPL\SplLibrary\Session\Exception\DataLimitExceededException;
 use TYPO3\CMS\Core\Context\Exception\AspectNotFoundException;
 use TYPO3\CMS\Extbase\Object\Exception;
 
@@ -58,6 +57,7 @@ class NoCachePrefixMiddleware implements MiddlewareInterface
 
                 $uri = $uri->withPath($path)->withQuery('no_cache=1');
                 $requestClone = $request->withUri($uri);
+
                 return $handler->handle($requestClone);
             }
         }

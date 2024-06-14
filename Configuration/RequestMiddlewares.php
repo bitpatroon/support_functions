@@ -13,7 +13,7 @@
 return [
     'frontend' => [
         'spl/library/accept-nc-prefix' => [
-            'target' => \SPL\SplLibrary\Middleware\NoCachePrefixMiddleware::class,
+            'target' => \BPN\SupportFunctions\Middleware\NoCachePrefixMiddleware::class,
             'after'  => [
                 'typo3/cms-frontend/timetracker',
             ],
