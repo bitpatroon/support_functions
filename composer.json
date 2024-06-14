@@ -1,41 +1,46 @@
 {
-  "name": "bitpatroon/support_functions",
-  "type": "typo3-cms-extension",
-  "description": "Bitpatroon Support Functions",
-  "keywords": [
-    "typo3",
-    "support",
-    "code"
-  ],
-  "license": "GPL-2.0-or-later",
-  "authors": [
-    {
-      "name": "Sjoerd Zonneveld",
-      "homepage": "https://www.bitpatroon.nl",
-      "role": "Developer"
+    "name": "bitpatroon/support_functions",
+    "type": "typo3-cms-extension",
+    "description": "Bitpatroon Support Functions",
+    "keywords": [
+        "typo3",
+        "support",
+        "code"
+    ],
+    "version": "10.5.1",
+    "license": "GPL-2.0-or-later",
+    "authors": [
+        {
+            "name": "Sjoerd Zonneveld",
+            "homepage": "https://www.bitpatroon.nl",
+            "role": "Developer"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "php": "^7.2",
+        "typo3/cms-core": "^10.3"
+    },
+    "config": {
+        "optimize-autoloader": true
+    },
+    "autoload": {
+        "files": [
+            "Classes/GlobalFunctions/path.php",
+            "Classes/GlobalFunctions/sql.php"
+        ],
+        "psr-4": {
+            "BPN\\SupportFunctions\\": "Classes"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "BPN\\SupportFunctions\\": "Tests"
+        }
+    },
+    "extra": {
+        "typo3/cms": {
+            "extension-key": "support_functions"
+        }
     }
-  ],
-  "minimum-stability": "stable",
-  "require": {
-    "php": "^7.2",
-    "typo3/cms-core": "^10.3"
-  },
-  "config": {
-    "optimize-autoloader": true
-  },
-  "autoload": {
-    "psr-4": {
-      "BPN\\SupportFunctions\\": "Classes"
-    }
-  },
-  "autoload-dev": {
-    "psr-4": {
-      "BPN\\SupportFunctions\\": "Tests"
-    }
-  },
-  "extra": {
-    "typo3/cms": {
-      "extension-key": "support_functions"
-    }
-  }
 }
